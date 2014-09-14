@@ -36,9 +36,66 @@ angular.module('storage.cache', []).factory('AngularCache', function AngularCach
         }
         
     }
+    
+    var cacheType = "gets";
+    var systemData;
 
     return {
 
+        /*
+         * options include:
+         *  cacheType: string
+         *      - gets (default)
+         *      - age
+         * 
+         * options.sysDataKey: string
+         *  This is the key the AngularCache will use to store all the settings
+         *  and how cache will take place.
+         *      - default: angularCache_system_data
+         * 
+         * systemOverride: true or false
+         *  If you want 
+         * 
+         */ 
+          
+              
+              
+        init: function (options) {
+            
+            
+            if (options.cacheType)
+                cacheType = options.cacheType;
+            
+            systemData = options.sysDataKey 
+                ? localStorage.getItem() 
+                : localStorage.getItem("angularCache_system_data");
+            
+            if(systemData && !options.systemOverride) {
+                // Load Settings
+            } else {
+                // Load Defaults
+            }
+            
+        },
+        
+        /*
+         * How this will work:
+         * Key - General, normal Key
+         * Value - A json, that stores the data and some of its metadata
+         *  { 
+         *      lastHit - Date
+         *      hitCount - Integer
+         *      dateAdded - Date
+         *      dateModified - Date
+         *      modifficationCount - Integer
+         *      data
+         */
+        
+        sync2: function () {
+            
+            
+            
+        },
 
         //TODO:
         // - pass one argument
